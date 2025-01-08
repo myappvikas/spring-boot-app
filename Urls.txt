@@ -1,0 +1,24 @@
+1. Search a product
+http://localhost:2010/my-app/retail/find/1
+
+2. Store a product
+http://localhost:2010/my-app/retail/save
+
+{
+    "productName": "Moto Edge",
+    "productPrise": 23000,
+    "productDescription": "50 GB",
+    "productCompanyName": "Motorola",
+    "productQuantity": 10,
+    "shopName": "My Mobile Shop",
+    "shopAddress": "Dullahpur"
+}
+
+3. Get all product
+http://localhost:2010/my-app/retail/find/all
+
+4. Update product info
+http://localhost:2010/my-app/retail/update/1/100000
+
+5. Delete product
+http://localhost:2010/my-app/retail/delete/2

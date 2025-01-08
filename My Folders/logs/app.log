@@ -1,0 +1,93 @@
+2025-01-08T16:01:24.170+05:30  INFO 2188 --- [Retail application for small retailer] [restartedMain] com.myapp.retail.RetailApplication       : Starting RetailApplication using Java 17.0.12 with PID 2188 (C:\My Folders\My Folders\IntelliJ\my-retail-app\my-retail-app\target\classes started by mrvik in C:\My Folders\My Folders\IntelliJ\my-retail-app\my-retail-app)
+2025-01-08T16:01:24.177+05:30  INFO 2188 --- [Retail application for small retailer] [restartedMain] com.myapp.retail.RetailApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-01-08T16:01:24.251+05:30  INFO 2188 --- [Retail application for small retailer] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-01-08T16:01:24.262+05:30  INFO 2188 --- [Retail application for small retailer] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-01-08T16:01:25.919+05:30  INFO 2188 --- [Retail application for small retailer] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-08T16:01:25.989+05:30  INFO 2188 --- [Retail application for small retailer] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 57 ms. Found 1 JPA repository interface.
+2025-01-08T16:01:27.002+05:30  INFO 2188 --- [Retail application for small retailer] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 2010 (http)
+2025-01-08T16:01:27.020+05:30  INFO 2188 --- [Retail application for small retailer] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-08T16:01:27.021+05:30  INFO 2188 --- [Retail application for small retailer] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-01-08T16:01:27.088+05:30  INFO 2188 --- [Retail application for small retailer] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-08T16:01:27.089+05:30  INFO 2188 --- [Retail application for small retailer] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2826 ms
+2025-01-08T16:01:27.309+05:30  INFO 2188 --- [Retail application for small retailer] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-08T16:01:27.598+05:30  INFO 2188 --- [Retail application for small retailer] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-01-08T16:01:27.601+05:30  INFO 2188 --- [Retail application for small retailer] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-01-08T16:01:27.625+05:30  INFO 2188 --- [Retail application for small retailer] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-01-08T16:01:27.944+05:30  INFO 2188 --- [Retail application for small retailer] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-08T16:01:28.042+05:30  INFO 2188 --- [Retail application for small retailer] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.2.Final
+2025-01-08T16:01:28.097+05:30  INFO 2188 --- [Retail application for small retailer] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-01-08T16:01:28.430+05:30  INFO 2188 --- [Retail application for small retailer] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-08T16:01:28.506+05:30  WARN 2188 --- [Retail application for small retailer] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-01-08T16:01:28.531+05:30  INFO 2188 --- [Retail application for small retailer] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-01-08T16:01:29.546+05:30  INFO 2188 --- [Retail application for small retailer] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-08T16:01:29.580+05:30  INFO 2188 --- [Retail application for small retailer] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-08T16:01:30.054+05:30  WARN 2188 --- [Retail application for small retailer] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-01-08T16:01:31.048+05:30  INFO 2188 --- [Retail application for small retailer] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-01-08T16:01:31.068+05:30  INFO 2188 --- [Retail application for small retailer] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-01-08T16:01:31.176+05:30  INFO 2188 --- [Retail application for small retailer] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 2010 (http) with context path '/'
+2025-01-08T16:01:31.198+05:30  INFO 2188 --- [Retail application for small retailer] [restartedMain] com.myapp.retail.RetailApplication       : Started RetailApplication in 7.649 seconds (process running for 8.243)
+2025-01-08T16:01:46.060+05:30  INFO 2188 --- [Retail application for small retailer] [http-nio-2010-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-08T16:01:46.061+05:30  INFO 2188 --- [Retail application for small retailer] [http-nio-2010-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-08T16:01:46.065+05:30  INFO 2188 --- [Retail application for small retailer] [http-nio-2010-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2025-01-08T16:01:46.173+05:30  INFO 2188 --- [Retail application for small retailer] [http-nio-2010-exec-1] c.m.retail.controller.RetailController   : before saving the product info!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+2025-01-08T16:01:46.176+05:30  INFO 2188 --- [Retail application for small retailer] [http-nio-2010-exec-1] c.m.retail.controller.RetailController   : After saving the product info
+2025-01-08T16:08:13.576+05:30  INFO 2188 --- [Retail application for small retailer] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-01-08T16:08:13.666+05:30  INFO 2188 --- [Retail application for small retailer] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-01-08T16:08:13.670+05:30  INFO 2188 --- [Retail application for small retailer] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-08T16:08:13.676+05:30  WARN 2188 --- [Retail application for small retailer] [SpringApplicationShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-232]
+2025-01-08T16:08:13.678+05:30  INFO 2188 --- [Retail application for small retailer] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-01-08T16:08:13.683+05:30  INFO 2188 --- [Retail application for small retailer] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-01-08T16:14:21.697+05:30  INFO 8004 --- [Retail application for small retailer] [restartedMain] com.myapp.retail.RetailApplication       : Starting RetailApplication using Java 17.0.12 with PID 8004 (C:\My Folders\My Folders\IntelliJ\my-retail-app\my-retail-app\target\classes started by mrvik in C:\My Folders\My Folders\IntelliJ\my-retail-app\my-retail-app)
+2025-01-08T16:14:21.701+05:30  INFO 8004 --- [Retail application for small retailer] [restartedMain] com.myapp.retail.RetailApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-01-08T16:14:21.792+05:30  INFO 8004 --- [Retail application for small retailer] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-01-08T16:14:21.793+05:30  INFO 8004 --- [Retail application for small retailer] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-01-08T16:14:23.410+05:30  INFO 8004 --- [Retail application for small retailer] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-08T16:14:23.489+05:30  INFO 8004 --- [Retail application for small retailer] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 65 ms. Found 1 JPA repository interface.
+2025-01-08T16:14:24.480+05:30  INFO 8004 --- [Retail application for small retailer] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 2010 (http)
+2025-01-08T16:14:24.499+05:30  INFO 8004 --- [Retail application for small retailer] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-08T16:14:24.499+05:30  INFO 8004 --- [Retail application for small retailer] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-01-08T16:14:24.567+05:30  INFO 8004 --- [Retail application for small retailer] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-08T16:14:24.567+05:30  INFO 8004 --- [Retail application for small retailer] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2773 ms
+2025-01-08T16:14:24.767+05:30  INFO 8004 --- [Retail application for small retailer] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-08T16:14:24.990+05:30  INFO 8004 --- [Retail application for small retailer] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-01-08T16:14:24.994+05:30  INFO 8004 --- [Retail application for small retailer] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-01-08T16:14:25.006+05:30  INFO 8004 --- [Retail application for small retailer] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-01-08T16:14:25.280+05:30  INFO 8004 --- [Retail application for small retailer] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-08T16:14:25.342+05:30  INFO 8004 --- [Retail application for small retailer] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.2.Final
+2025-01-08T16:14:25.425+05:30  INFO 8004 --- [Retail application for small retailer] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-01-08T16:14:25.723+05:30  INFO 8004 --- [Retail application for small retailer] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-08T16:14:25.773+05:30  WARN 8004 --- [Retail application for small retailer] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-01-08T16:14:25.796+05:30  INFO 8004 --- [Retail application for small retailer] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-01-08T16:14:26.660+05:30  INFO 8004 --- [Retail application for small retailer] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-08T16:14:26.700+05:30  INFO 8004 --- [Retail application for small retailer] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-08T16:14:27.148+05:30  WARN 8004 --- [Retail application for small retailer] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-01-08T16:14:28.024+05:30  INFO 8004 --- [Retail application for small retailer] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-01-08T16:14:28.038+05:30  INFO 8004 --- [Retail application for small retailer] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-01-08T16:14:28.143+05:30  INFO 8004 --- [Retail application for small retailer] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 2010 (http) with context path '/'
+2025-01-08T16:14:28.163+05:30  INFO 8004 --- [Retail application for small retailer] [restartedMain] com.myapp.retail.RetailApplication       : Started RetailApplication in 7.066 seconds (process running for 7.7)
+2025-01-08T16:14:28.213+05:30  INFO 8004 --- [Retail application for small retailer] [restartedMain] c.m.retail.controller.RetailController   : calling RetailServiceImpl!!!!!!!!!!!!!!!!!!!!!!
+2025-01-08T16:14:49.639+05:30  INFO 8004 --- [Retail application for small retailer] [http-nio-2010-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-08T16:14:49.640+05:30  INFO 8004 --- [Retail application for small retailer] [http-nio-2010-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-08T16:14:49.641+05:30  INFO 8004 --- [Retail application for small retailer] [http-nio-2010-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-01-08T16:14:49.927+05:30  INFO 8004 --- [Retail application for small retailer] [http-nio-2010-exec-1] c.m.retail.controller.RetailController   : calling RetailController!!!!!!!!!!!!!!!!!!!!!!
+2025-01-08T16:14:49.928+05:30  INFO 8004 --- [Retail application for small retailer] [http-nio-2010-exec-1] c.m.retail.controller.RetailController   : calling RetailServiceImpl!!!!!!!!!!!!!!!!!!!!!!
+2025-01-08T16:16:01.852+05:30  INFO 8004 --- [Retail application for small retailer] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-01-08T16:16:01.939+05:30  INFO 8004 --- [Retail application for small retailer] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-01-08T16:16:01.943+05:30  INFO 8004 --- [Retail application for small retailer] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-08T16:16:01.949+05:30  WARN 8004 --- [Retail application for small retailer] [SpringApplicationShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-232]
+2025-01-08T16:16:01.951+05:30  INFO 8004 --- [Retail application for small retailer] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-01-08T16:16:01.955+05:30  INFO 8004 --- [Retail application for small retailer] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
