@@ -85,7 +85,6 @@ public class EmployeeController {
                     @ApiResponse(responseCode = "404", description = "Resource not found")
             }
     )
-
     @DeleteMapping("/{employeeId}")
     public ResponseEntity<?> deleteEmployee(@PathVariable int employeeId){
         employeeService.deleteEmployee(employeeId);

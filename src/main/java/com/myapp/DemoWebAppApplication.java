@@ -16,7 +16,7 @@ public class DemoWebAppApplication implements CommandLineRunner {
 		this.employeeService = employeeService;
 	}
 
-	public static void main(String[] args) {
+	static void main(String[] args) {
 		SpringApplication.run(DemoWebAppApplication.class, args);
 	}
 
