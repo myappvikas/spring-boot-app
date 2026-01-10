@@ -6,11 +6,13 @@ import com.myapp.repository.EmployeeRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
+import java.time.LocalDateTime;
 
 @ExtendWith(MockitoExtension.class)
 class EmployeeServiceImplTest {
@@ -27,16 +29,40 @@ class EmployeeServiceImplTest {
     @Test
     void testSave() {
 
-        EmployeeDTO inputDto = new EmployeeDTO();
-        Employee employee = new Employee();
-        Employee savedEmployee = new Employee();
-        EmployeeDTO outputDto = new EmployeeDTO();
+        EmployeeDTO inputDto = getEmployeeDTO();
+        EmployeeDTO outputDto = getEmployeeDTO();
 
-        when(modelMapper.map(inputDto, Employee.class)).thenReturn(employee);
-        when(employeeRepository.save(employee)).thenReturn(savedEmployee);
-        when(modelMapper.map(savedEmployee, EmployeeDTO.class)).thenReturn(outputDto);
+        Employee inputEmployeeEntity = getEmployeeEntity();
+        Employee outputEmployeeEntity = getEmployeeEntity();
+
+        when(modelMapper.map(inputDto, Employee.class)).thenReturn(inputEmployeeEntity);
+        when(employeeRepository.save(inputEmployeeEntity)).thenReturn(outputEmployeeEntity);
+        when(modelMapper.map(outputEmployeeEntity, EmployeeDTO.class)).thenReturn(outputDto);
 
         EmployeeDTO result = employeeService.save(inputDto);
         assertNotNull(result);
+        assertEquals("test",result.getEmployeeName());
+        assertEquals("test@gmail.com",result.getEmail());
+    }
+    private static Employee getEmployeeEntity() {
+        Employee employee = new Employee();
+        employee.setEmail("test@gmail.com");
+        employee.setEmployeeName("test");
+        employee.setAge(1);
+        employee.setSalary(1d);
+        employee.setDateOfBirth(LocalDateTime.of(2026, 1, 1,
+                1, 1));
+        return employee;
+    }
+
+    private static EmployeeDTO getEmployeeDTO(){
+        EmployeeDTO employeeDTO = new EmployeeDTO();
+        employeeDTO.setEmail("test@gmail.com");
+        employeeDTO.setEmployeeName("test");
+        employeeDTO.setAge(1);
+        employeeDTO.setSalary(1d);
+        employeeDTO.setDateOfBirth(LocalDateTime.of(2026, 1, 1,
+                1, 1));
+        return employeeDTO;
     }
 }
