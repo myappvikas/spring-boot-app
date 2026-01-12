@@ -1,0 +1,77 @@
+Bean Validation:
+-----------------
+Bean Validation in Spring Boot allows you to validate request payloads,
+DTOs, and entities automatically using annotations (JSR-380 / Jakarta Validation).
+
+Steps
+------
+1. Add the validation dependency
+
+Spring Boot starter already integrates Jakarta Bean Validation via Hibernate Validator.
+Add the dependency in pom.xml:
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-validation</artifactId>
+</dependency>
+
+2. Create a DTO with validation annotations
+
+Use Jakarta Validation annotations (since Spring Boot 3 uses jakarta.* namespace).
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
+public class UserRequest {
+
+    @NotBlank(message = "Name is required")
+    @Size(min = 2, max = 30, message = "Name must be between 2 and 30 characters")
+    private String name;
+
+    @Email(message = "Invalid email address")
+    @NotBlank(message = "Email is required")
+    private String email;
+
+    @Size(min = 6, message = "Password must be at least 6 characters")
+    private String password;
+
+        // getters and setters
+    }
+
+3. Use @Valid in Controller
+
+    Annotate the request body parameter with @Valid.
+    Spring will automatically validate the incoming payload.
+
+    import org.springframework.http.ResponseEntity;
+    import org.springframework.web.bind.annotation.*;
+    import jakarta.validation.Valid;
+
+    @RestController
+    @RequestMapping("/users")
+    public class UserController {
+
+        @PostMapping
+        public ResponseEntity<String> createUser(@Valid @RequestBody UserRequest userRequest{
+        return ResponseEntity.ok("User created successfully: " + userRequest.getName());
+            }
+        }
+
+4. Handle validation errors
+
+By default, Spring returns a 400 Bad Request with error details.
+You can customize the response using a Global Exception Handler:
+
+@ControllerAdvice
+public class GlobalExceptionHandler {
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+        ex.getBindingResult()
+        .getFieldErrors()
+        .forEach(error ->
+                errors.put(error.getField(), error.getDefaultMessage()));
+        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+    }
+}

@@ -1,0 +1,27 @@
+1. Add Lombok Dependency
+
+If you’re using Maven, add this to your pom.xml:
+
+<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>1.18.34</version> <!-- latest stable -->
+    <scope>provided</scope>
+</dependency>
+
+2. Enable Annotation Processing in Your IDE
+
+IntelliJ IDEA
+Go to Settings → Build, Execution, Deployment → Compiler → Annotation Processors
+Check "Enable annotation processing".
+
+3. Use Lombok Annotations
+
+Some commonly used annotations are:
+@Getter / @Setter → Generates getter and setter methods.
+@ToString → Generates toString().
+@EqualsAndHashCode → Generates equals() and hashCode().
+@NoArgsConstructor / @AllArgsConstructor / @RequiredArgsConstructor → Generates constructors.
+@Data → Combination of @Getter, @Setter, @EqualsAndHashCode, @ToString, and @RequiredArgsConstructor.
+@Builder → Creates builder pattern.
+@Slf4j → Creates a logger instance.

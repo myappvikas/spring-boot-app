@@ -1,0 +1,45 @@
+Model Mapper:
+-------------
+ModelMapper is a Java library used in Spring Boot to automatically map objects,
+typically from DTOs (Data Transfer Objects) to Entities and vice versa.
+
+Common Use Cases:
+•	Convert Entity → DTO when returning API responses.
+•	Convert DTO → Entity when receiving data from frontend forms or APIs.
+
+Step to use model mapper
+1.	Add maven dependency
+<dependency>
+    <groupId>org.modelmapper</groupId>
+    <artifactId>modelmapper</artifactId>
+    <version>3.1.1</version> <!-- or latest -->
+</dependency>
+
+2.	Configure ModelMapper as a Bean
+            @Configuration
+             public class ModelMapperConfig {
+                        @Bean
+                         public ModelMapper modelMapper() {
+                              return new ModelMapper();
+                         }
+               }
+
+3.	Inject and Use in Your Service
+
+@Service
+public class UserService {
+
+     @Autowired
+     private ModelMapper modelMapper;
+
+     @Autowired
+     private EmployeeRepository employeeRepository;
+
+     @Override
+     public EmployeeDTO save(EmployeeDTO employeeDTO) {
+         Employee entity = modelMapper.map(employeeDTO,Employee.class);
+         Employee savedEmployee = employeeRepository.save(entity);
+         EmployeeDTO dto = modelMapper.map(savedEmployee,EmployeeDTO.class);
+         return dto;
+     }
+}

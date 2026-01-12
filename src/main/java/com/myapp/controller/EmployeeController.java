@@ -47,7 +47,6 @@ public class EmployeeController {
         List<EmployeeDTO> allEmployees = employeeService.getAllEmployees();
         return new ResponseEntity<>(allEmployees, HttpStatus.OK);
     }
-
     @Operation(
             summary = "Get Employee by ID",
             description = "Fetches a employee based on the provided ID.",
