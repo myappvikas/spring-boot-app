@@ -13,6 +13,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
 @ExtendWith(MockitoExtension.class)
 class EmployeeServiceImplTest {
@@ -44,6 +46,87 @@ class EmployeeServiceImplTest {
         assertEquals("test",result.getEmployeeName());
         assertEquals("test@gmail.com",result.getEmail());
     }
+    @Test
+    void testFindById() {
+
+        EmployeeDTO outputDto = getEmployeeDTO();
+        Employee outputEmployeeEntity = getEmployeeEntity();
+
+        when(employeeRepository.findById(1))
+                .thenReturn(Optional.of(outputEmployeeEntity));
+        when(modelMapper.map(outputEmployeeEntity, EmployeeDTO.class))
+                .thenReturn(outputDto);
+
+        EmployeeDTO result = employeeService.findById(1);
+
+        assertNotNull(result);
+        assertEquals("test", result.getEmployeeName());
+        assertEquals("test@gmail.com", result.getEmail());
+
+        verify(employeeRepository).findById(1);
+        verify(modelMapper).map(outputEmployeeEntity, EmployeeDTO.class);
+    }
+
+    @Test
+    void testGetAllEmployees() {
+
+        Employee employee = getEmployeeEntity();
+        EmployeeDTO employeeDTO = getEmployeeDTO();
+
+        when(employeeRepository.findAll())
+                .thenReturn(List.of(employee));
+        when(modelMapper.map(employee, EmployeeDTO.class))
+                .thenReturn(employeeDTO);
+
+        List<EmployeeDTO> result = employeeService.getAllEmployees();
+
+        assertNotNull(result);
+        assertEquals(1, result.size());
+        assertEquals("test", result.getFirst().getEmployeeName());
+        assertEquals("test@gmail.com", result.getFirst().getEmail());
+
+        verify(employeeRepository).findAll();
+        verify(modelMapper).map(employee, EmployeeDTO.class);
+    }
+
+    @Test
+    void testUpdateEmployeeSalary() {
+
+        Employee employee = getEmployeeEntity();
+        employee.setSalary(50000);
+
+        EmployeeDTO employeeDTO = getEmployeeDTO();
+        employeeDTO.setSalary(60000);
+
+        when(employeeRepository.findById(1))
+                .thenReturn(Optional.of(employee));
+        when(employeeRepository.save(employee))
+                .thenReturn(employee);
+
+        when(modelMapper.map(employee, EmployeeDTO.class))
+                .thenReturn(employeeDTO);
+
+        EmployeeDTO result = employeeService.updateEmployeeSalary(1, 60000);
+
+        assertNotNull(result);
+        assertEquals(60000, result.getSalary());
+
+        verify(employeeRepository).findById(1);
+        verify(employeeRepository).save(employee);
+        verify(modelMapper).map(employee, EmployeeDTO.class);
+    }
+
+    @Test
+    void testDeleteEmployee_Success() {
+
+        when(employeeRepository.existsById(1))
+                .thenReturn(true);
+
+        employeeService.deleteEmployee(1);
+        verify(employeeRepository).existsById(1);
+        verify(employeeRepository).deleteById(1);
+    }
+
     private static Employee getEmployeeEntity() {
         Employee employee = new Employee();
         employee.setEmail("test@gmail.com");
