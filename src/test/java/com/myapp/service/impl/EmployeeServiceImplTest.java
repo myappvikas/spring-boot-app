@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 import java.time.LocalDateTime;
@@ -91,29 +92,23 @@ class EmployeeServiceImplTest {
 
     @Test
     void testUpdateEmployeeSalary() {
-
         Employee employee = getEmployeeEntity();
         employee.setSalary(50000);
 
         EmployeeDTO employeeDTO = getEmployeeDTO();
         employeeDTO.setSalary(60000);
 
-        when(employeeRepository.findById(1))
-                .thenReturn(Optional.of(employee));
-        when(employeeRepository.save(employee))
-                .thenReturn(employee);
-
-        when(modelMapper.map(employee, EmployeeDTO.class))
-                .thenReturn(employeeDTO);
-
+        when(employeeRepository.findById(1)).thenReturn(Optional.of(employee));
+        when(modelMapper.map(employee, EmployeeDTO.class)).thenReturn(employeeDTO);
         EmployeeDTO result = employeeService.updateEmployeeSalary(1, 60000);
 
+        // Assert
         assertNotNull(result);
         assertEquals(60000, result.getSalary());
 
         verify(employeeRepository).findById(1);
-        verify(employeeRepository).save(employee);
         verify(modelMapper).map(employee, EmployeeDTO.class);
+        verify(employeeRepository, Mockito.never()).save(Mockito.any());
     }
 
     @Test
