@@ -40,7 +40,7 @@ public class DemoWebAppApplication implements CommandLineRunner {
 		employeeDTO.setAge(32);
 		employeeDTO.setSalary(100000d);
 		employeeDTO.setDateOfBirth(LocalDateTime.now());
-		EmployeeDTO savedEmployee = employeeService.save(employeeDTO);
+		EmployeeDTO savedEmployee = employeeService.createEmployee(employeeDTO);
 		System.out.println(savedEmployee);
 	}
 }

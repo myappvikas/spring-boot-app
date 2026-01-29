@@ -102,7 +102,6 @@ class EmployeeServiceImplTest {
         when(modelMapper.map(employee, EmployeeDTO.class)).thenReturn(employeeDTO);
         EmployeeDTO result = employeeService.updateEmployeeSalary(1, 60000);
 
-        // Assert
         assertNotNull(result);
         assertEquals(60000, result.getSalary());
 

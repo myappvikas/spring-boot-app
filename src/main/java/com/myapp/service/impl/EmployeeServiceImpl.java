@@ -24,7 +24,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public EmployeeDTO save(EmployeeDTO employeeDTO) {
+    public EmployeeDTO createEmployee(EmployeeDTO employeeDTO) {
         Employee employee = modelMapper.map(employeeDTO, Employee.class);
         Employee savedEmployee = employeeRepository.save(employee);
         return modelMapper.map(savedEmployee, EmployeeDTO.class);
@@ -55,7 +55,6 @@ public class EmployeeServiceImpl implements EmployeeService {
                         new EntityNotFoundException("Employee not found with id " + id));
 
         employee.setSalary(newSalary);
-        // No explicit save required (managed entity)
         return modelMapper.map(employee, EmployeeDTO.class);
     }
 

@@ -44,7 +44,7 @@ class EmployeeControllerIT {
         mockMvc.perform(post("/api/employees")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(dto)))
-                .andDo(print())   // 👈 ADD THIS
+                .andDo(print())
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.employeeId").value(1))
                 .andExpect(jsonPath("$.employeeName").value("vikas"))
