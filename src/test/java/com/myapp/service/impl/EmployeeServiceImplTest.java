@@ -10,7 +10,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 import java.time.LocalDateTime;
@@ -42,7 +41,7 @@ class EmployeeServiceImplTest {
         when(employeeRepository.save(inputEmployeeEntity)).thenReturn(outputEmployeeEntity);
         when(modelMapper.map(outputEmployeeEntity, EmployeeDTO.class)).thenReturn(outputDto);
 
-        EmployeeDTO result = employeeService.save(inputDto);
+        EmployeeDTO result = employeeService.createEmployee(inputDto);
         assertNotNull(result);
         assertEquals("test",result.getEmployeeName());
         assertEquals("test@gmail.com",result.getEmail());
@@ -53,18 +52,18 @@ class EmployeeServiceImplTest {
         EmployeeDTO outputDto = getEmployeeDTO();
         Employee outputEmployeeEntity = getEmployeeEntity();
 
-        when(employeeRepository.findById(1))
+        when(employeeRepository.findById(1L))
                 .thenReturn(Optional.of(outputEmployeeEntity));
         when(modelMapper.map(outputEmployeeEntity, EmployeeDTO.class))
                 .thenReturn(outputDto);
 
-        EmployeeDTO result = employeeService.findById(1);
+        EmployeeDTO result = employeeService.findById(1L);
 
         assertNotNull(result);
         assertEquals("test", result.getEmployeeName());
         assertEquals("test@gmail.com", result.getEmail());
 
-        verify(employeeRepository).findById(1);
+        verify(employeeRepository).findById(1L);
         verify(modelMapper).map(outputEmployeeEntity, EmployeeDTO.class);
     }
 
@@ -93,32 +92,38 @@ class EmployeeServiceImplTest {
     @Test
     void testUpdateEmployeeSalary() {
         Employee employee = getEmployeeEntity();
-        employee.setSalary(50000);
+        employee.setSalary(50000D);
 
         EmployeeDTO employeeDTO = getEmployeeDTO();
-        employeeDTO.setSalary(60000);
+        employeeDTO.setSalary(60000D);
 
-        when(employeeRepository.findById(1)).thenReturn(Optional.of(employee));
-        when(modelMapper.map(employee, EmployeeDTO.class)).thenReturn(employeeDTO);
-        EmployeeDTO result = employeeService.updateEmployeeSalary(1, 60000);
+        Employee savedEmployee = getEmployeeEntity();
+        savedEmployee.setSalary(60000D);
+
+        when(employeeRepository.findById(1L)).thenReturn(Optional.of(employee));
+        // use doReturn() stubbing to avoid strict stubbing mismatches
+        doReturn(savedEmployee).when(employeeRepository).save(any(Employee.class));
+        doReturn(employeeDTO).when(modelMapper).map(any(Employee.class), eq(EmployeeDTO.class));
+
+        EmployeeDTO result = employeeService.updateEmployeeSalary(1L, 60000D);
 
         assertNotNull(result);
-        assertEquals(60000, result.getSalary());
+        assertEquals(60000D, result.getSalary());
 
-        verify(employeeRepository).findById(1);
-        verify(modelMapper).map(employee, EmployeeDTO.class);
-        verify(employeeRepository, Mockito.never()).save(Mockito.any());
+        verify(employeeRepository).findById(1L);
+        verify(employeeRepository).save(any(Employee.class));
+        verify(modelMapper).map(any(Employee.class), eq(EmployeeDTO.class));
     }
 
     @Test
     void testDeleteEmployee_Success() {
 
-        when(employeeRepository.existsById(1))
+        when(employeeRepository.existsById(1L))
                 .thenReturn(true);
 
-        employeeService.deleteEmployee(1);
-        verify(employeeRepository).existsById(1);
-        verify(employeeRepository).deleteById(1);
+        employeeService.deleteEmployee(1L);
+        verify(employeeRepository).existsById(1L);
+        verify(employeeRepository).deleteById(1L);
     }
 
     private static Employee getEmployeeEntity() {

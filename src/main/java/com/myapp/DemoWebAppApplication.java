@@ -35,12 +35,15 @@ public class DemoWebAppApplication implements CommandLineRunner {
         System.out.println(dto);*/
 
 		EmployeeDTO employeeDTO = new EmployeeDTO();
+
+        employeeDTO.setEmployeeName("vikas");
 		employeeDTO.setEmail("vikas@gmail.com");
-		employeeDTO.setEmployeeName("vikas");
 		employeeDTO.setAge(32);
 		employeeDTO.setSalary(100000d);
 		employeeDTO.setDateOfBirth(LocalDateTime.now());
+
 		EmployeeDTO savedEmployee = employeeService.createEmployee(employeeDTO);
+
 		System.out.println(savedEmployee);
 	}
 }

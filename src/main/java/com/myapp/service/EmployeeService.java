@@ -9,11 +9,11 @@ public interface EmployeeService {
 
     EmployeeDTO createEmployee(EmployeeDTO employeeDTO);
 
-    EmployeeDTO findById(int employeeId);
+    EmployeeDTO findById(Long employeeId);
 
     List<EmployeeDTO> getAllEmployees();
 
-    EmployeeDTO updateEmployeeSalary(int id, double salary);
+    EmployeeDTO updateEmployeeSalary(Long id, Double salary);
 
-    void deleteEmployee(int id);
+    void deleteEmployee(Long id);
 }

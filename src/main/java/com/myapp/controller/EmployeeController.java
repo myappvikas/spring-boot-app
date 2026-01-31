@@ -56,7 +56,7 @@ public class EmployeeController {
             }
     )
     @GetMapping("/{employeeId}")
-    public ResponseEntity<?> getEmployeeById(@PathVariable int employeeId){
+    public ResponseEntity<?> getEmployeeById(@PathVariable Long employeeId){
         EmployeeDTO employeeDTO = employeeService.findById(employeeId);
         return new ResponseEntity<>(employeeDTO, HttpStatus.OK);
     }
@@ -70,8 +70,8 @@ public class EmployeeController {
             }
     )
     @PutMapping("/{employeeId}/{salary}")
-    public ResponseEntity<?> updateEmployeeSalary(@PathVariable int employeeId, @PathVariable
-                                                                      double salary){
+    public ResponseEntity<?> updateEmployeeSalary(@PathVariable Long employeeId, @PathVariable
+                                                                      Double salary){
         EmployeeDTO employees = employeeService.updateEmployeeSalary(employeeId, salary);
         return new ResponseEntity<>(employees, HttpStatus.OK);
     }
@@ -85,7 +85,7 @@ public class EmployeeController {
             }
     )
     @DeleteMapping("/{employeeId}")
-    public ResponseEntity<?> deleteEmployee(@PathVariable int employeeId){
+    public ResponseEntity<?> deleteEmployee(@PathVariable Long employeeId){
         employeeService.deleteEmployee(employeeId);
         return new ResponseEntity<>("Resource has been deleted successfully", HttpStatus.OK);
     }

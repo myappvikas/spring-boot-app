@@ -14,7 +14,7 @@ import jakarta.validation.constraints.*;
 @Builder
 public class EmployeeDTO {
 
-    private int employeeId;
+    private Long employeeId;
 
     @NotBlank(message = "Employee name is required")
     @Size(min = 2, max = 50, message = "Employee name must be between 2 and 50 characters")
@@ -23,7 +23,7 @@ public class EmployeeDTO {
 
     @Min(value = 18, message = "Age must be at least 18")
     @Max(value = 65, message = "Age must not exceed 65")
-    private int age;
+    private Integer age;
 
     @NotBlank(message = "Email is required")
     @Email(message = "Invalid email address")
@@ -32,7 +32,7 @@ public class EmployeeDTO {
     @PositiveOrZero(message = "Salary must be zero or positive")
     @DecimalMin(value = "10000.00", message = "Salary must be at least 10,000")
     @DecimalMax(value = "1000000.00", message = "Salary must not exceed 1,000,000")
-    private double salary;
+    private Double salary;
 
     @Past(message = "Date of birth must be in the past")
     @NotNull(message = "Date of birth is required")

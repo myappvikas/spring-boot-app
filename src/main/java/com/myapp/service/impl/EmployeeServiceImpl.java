@@ -25,6 +25,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeDTO createEmployee(EmployeeDTO employeeDTO) {
+
+        if (employeeDTO == null) {
+            throw new IllegalArgumentException("EmployeeDTO cannot be null");
+        }
         Employee employee = modelMapper.map(employeeDTO, Employee.class);
         Employee savedEmployee = employeeRepository.save(employee);
         return modelMapper.map(savedEmployee, EmployeeDTO.class);
@@ -33,6 +37,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     @Transactional(readOnly = true)
     public List<EmployeeDTO> getAllEmployees() {
+
         return employeeRepository.findAll()
                 .stream()
                 .map(emp -> modelMapper.map(emp, EmployeeDTO.class))
@@ -41,7 +46,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     @Transactional(readOnly = true)
-    public EmployeeDTO findById(int employeeId) {
+    public EmployeeDTO findById(Long employeeId) {
+
         Employee employee = employeeRepository.findById(employeeId)
                 .orElseThrow(() ->
                         new EntityNotFoundException("Employee not found with id " + employeeId));
@@ -49,17 +55,23 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public EmployeeDTO updateEmployeeSalary(int id, double newSalary) {
+    public EmployeeDTO updateEmployeeSalary(Long id, Double newSalary) {
+
+        if (newSalary < 0) {
+            throw new IllegalArgumentException("Salary cannot be negative");
+        }
         Employee employee = employeeRepository.findById(id)
                 .orElseThrow(() ->
                         new EntityNotFoundException("Employee not found with id " + id));
 
         employee.setSalary(newSalary);
-        return modelMapper.map(employee, EmployeeDTO.class);
+        Employee savedEmployee = employeeRepository.save(employee);
+
+        return modelMapper.map(savedEmployee, EmployeeDTO.class);
     }
 
     @Override
-    public void deleteEmployee(int id) {
+    public void deleteEmployee(Long id) {
         if (!employeeRepository.existsById(id)) {
             throw new EntityNotFoundException("Employee not found with id " + id);
         }

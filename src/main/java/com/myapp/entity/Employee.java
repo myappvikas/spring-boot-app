@@ -15,17 +15,17 @@ public class Employee
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int employeeId;
+    private Long employeeId;
 
     @Column(nullable = false)
     private String employeeName;
 
-    private int age;
+    private Integer age;
 
     @Column(unique = true, nullable = false)
     private String email;
 
-    private double salary;
+    private Double salary;
 
     private LocalDateTime dateOfBirth;
 }
