@@ -31,31 +31,30 @@ class EmployeeServiceImplTest {
     @Test
     void testSave() {
 
-        EmployeeDTO inputDto = getEmployeeDTO();
-        EmployeeDTO outputDto = getEmployeeDTO();
+        EmployeeDTO dto = buildEmployeeDTO();
+        Employee entity = buildEmployeeEntity();
 
-        Employee inputEmployeeEntity = getEmployeeEntity();
-        Employee outputEmployeeEntity = getEmployeeEntity();
+        when(modelMapper.map(dto, Employee.class)).thenReturn(entity);
+        when(employeeRepository.save(entity)).thenReturn(entity);
+        when(modelMapper.map(entity, EmployeeDTO.class)).thenReturn(dto);
 
-        when(modelMapper.map(inputDto, Employee.class)).thenReturn(inputEmployeeEntity);
-        when(employeeRepository.save(inputEmployeeEntity)).thenReturn(outputEmployeeEntity);
-        when(modelMapper.map(outputEmployeeEntity, EmployeeDTO.class)).thenReturn(outputDto);
+        EmployeeDTO result = employeeService.createEmployee(dto);
 
-        EmployeeDTO result = employeeService.createEmployee(inputDto);
         assertNotNull(result);
-        assertEquals("test",result.getEmployeeName());
-        assertEquals("test@gmail.com",result.getEmail());
+        assertEquals("test", result.getEmployeeName());
+        assertEquals("test@gmail.com", result.getEmail());
     }
+
     @Test
     void testFindById() {
 
-        EmployeeDTO outputDto = getEmployeeDTO();
-        Employee outputEmployeeEntity = getEmployeeEntity();
+        EmployeeDTO dto = buildEmployeeDTO();
+        Employee entity = buildEmployeeEntity();
 
         when(employeeRepository.findById(1L))
-                .thenReturn(Optional.of(outputEmployeeEntity));
-        when(modelMapper.map(outputEmployeeEntity, EmployeeDTO.class))
-                .thenReturn(outputDto);
+                .thenReturn(Optional.of(entity));
+        when(modelMapper.map(entity, EmployeeDTO.class))
+                .thenReturn(dto);
 
         EmployeeDTO result = employeeService.findById(1L);
 
@@ -64,19 +63,19 @@ class EmployeeServiceImplTest {
         assertEquals("test@gmail.com", result.getEmail());
 
         verify(employeeRepository).findById(1L);
-        verify(modelMapper).map(outputEmployeeEntity, EmployeeDTO.class);
+        verify(modelMapper).map(entity, EmployeeDTO.class);
     }
 
     @Test
     void testGetAllEmployees() {
 
-        Employee employee = getEmployeeEntity();
-        EmployeeDTO employeeDTO = getEmployeeDTO();
+        Employee entity = buildEmployeeEntity();
+        EmployeeDTO dto = buildEmployeeDTO();
 
         when(employeeRepository.findAll())
-                .thenReturn(List.of(employee));
-        when(modelMapper.map(employee, EmployeeDTO.class))
-                .thenReturn(employeeDTO);
+                .thenReturn(List.of(entity));
+        when(modelMapper.map(entity, EmployeeDTO.class))
+                .thenReturn(dto);
 
         List<EmployeeDTO> result = employeeService.getAllEmployees();
 
@@ -86,24 +85,24 @@ class EmployeeServiceImplTest {
         assertEquals("test@gmail.com", result.getFirst().getEmail());
 
         verify(employeeRepository).findAll();
-        verify(modelMapper).map(employee, EmployeeDTO.class);
+        verify(modelMapper).map(entity, EmployeeDTO.class);
     }
 
     @Test
     void testUpdateEmployeeSalary() {
-        Employee employee = getEmployeeEntity();
-        employee.setSalary(50000D);
 
-        EmployeeDTO employeeDTO = getEmployeeDTO();
-        employeeDTO.setSalary(60000D);
+        Employee entity = buildEmployeeEntity();
+        entity.setSalary(50000D);
 
-        Employee savedEmployee = getEmployeeEntity();
+        EmployeeDTO dto = buildEmployeeDTO();
+        dto.setSalary(60000D);
+
+        Employee savedEmployee = buildEmployeeEntity();
         savedEmployee.setSalary(60000D);
 
-        when(employeeRepository.findById(1L)).thenReturn(Optional.of(employee));
-        // use doReturn() stubbing to avoid strict stubbing mismatches
+        when(employeeRepository.findById(1L)).thenReturn(Optional.of(entity));
         doReturn(savedEmployee).when(employeeRepository).save(any(Employee.class));
-        doReturn(employeeDTO).when(modelMapper).map(any(Employee.class), eq(EmployeeDTO.class));
+        doReturn(dto).when(modelMapper).map(any(Employee.class), eq(EmployeeDTO.class));
 
         EmployeeDTO result = employeeService.updateEmployeeSalary(1L, 60000D);
 
@@ -116,7 +115,7 @@ class EmployeeServiceImplTest {
     }
 
     @Test
-    void testDeleteEmployee_Success() {
+    void testDeleteEmployee() {
 
         when(employeeRepository.existsById(1L))
                 .thenReturn(true);
@@ -126,23 +125,23 @@ class EmployeeServiceImplTest {
         verify(employeeRepository).deleteById(1L);
     }
 
-    private static Employee getEmployeeEntity() {
+    private static Employee buildEmployeeEntity() {
         Employee employee = new Employee();
-        employee.setEmail("test@gmail.com");
         employee.setEmployeeName("test");
         employee.setAge(1);
         employee.setSalary(1d);
+        employee.setEmail("test@gmail.com");
         employee.setDateOfBirth(LocalDateTime.of(2026, 1, 1,
                 1, 1));
         return employee;
     }
 
-    private static EmployeeDTO getEmployeeDTO(){
+    private static EmployeeDTO buildEmployeeDTO() {
         EmployeeDTO employeeDTO = new EmployeeDTO();
-        employeeDTO.setEmail("test@gmail.com");
         employeeDTO.setEmployeeName("test");
         employeeDTO.setAge(1);
         employeeDTO.setSalary(1d);
+        employeeDTO.setEmail("test@gmail.com");
         employeeDTO.setDateOfBirth(LocalDateTime.of(2026, 1, 1,
                 1, 1));
         return employeeDTO;

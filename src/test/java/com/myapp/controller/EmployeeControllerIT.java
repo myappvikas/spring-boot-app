@@ -35,12 +35,14 @@ class EmployeeControllerIT {
     void shouldCreateEmployee() throws Exception {
 
         EmployeeDTO dto = new EmployeeDTO();
+
         dto.setEmployeeId(1L);
         dto.setEmployeeName("vikas");
         dto.setSalary(100000D);
         dto.setAge(35);
-        dto.setDateOfBirth(LocalDateTime.now());
         dto.setEmail("vikas@gmail.com");
+        dto.setDateOfBirth(LocalDateTime.now());
+
         mockMvc.perform(post("/api/employees")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(dto)))
